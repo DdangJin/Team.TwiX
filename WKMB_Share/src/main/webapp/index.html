@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Who Knows Me Best?</title>
+
+<link rel="stylesheet" href="./css/bootstrap.css">
+<style>
+	body {
+		margin: 0;
+	}
+
+	#container {
+		text-align: left;
+		width: 100%;
+	}
+	
+	#gfheader {
+		width: 100%;
+		height: 150px;
+		background-color: #FF6757;
+	}
+	
+	#header {
+		width: 1100px;
+		height: 100%;
+		margin: 0 auto;
+		padding-top: 19px;
+		padding-left: 5px;
+	}
+	
+	#title {
+		float: left;
+		vertical-align: middle;
+	}
+	
+	#login {
+		float: right;
+		width: 400px;
+		padding-top:60px;
+		text-align: right;
+	}
+	
+	#gfcontent {
+		width: 100%;
+		height: 900px;
+		background-color: #FFF9EC;
+	}
+	
+	#content {
+		width: 1100px;
+		height:900px;
+		margin: 0 auto;
+		padding-top: 20px;
+	}
+	
+	#left-content {
+		width: 50%;
+		height: 100%;
+		float: left;
+	}
+	
+	#description {
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+	#right-content {
+		width: 50%;
+		height: 100%;
+		float: right;
+	}
+	
+	#register {
+		width: 300px;
+		float: right;
+		margin-right: 50px;
+	}
+	
+	#sex-pont {
+		font-size: 20px;
+	}
+	
+	
+	.form-control {
+  		display: block;
+		width: 300px;
+		height: 34px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+		     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+	.form-control:focus {
+	  	border-color: #66afe9;
+	  	outline: 0;
+	  	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	         	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	}
+	
+	.form-control1 {
+  		display: inline;
+		width: 150px;
+		height: 34px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+		     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+	.form-control1:focus {
+	  	border-color: #66afe9;
+	  	outline: 0;
+	  	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	         	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	}
+
+	
+	/* #login input[type=text], #login input[type=password] {
+		border-radius:10px;
+		width:170px;
+		height:25px;
+	} */
+</style>
+
+<script type="text/javascript" src="./js/jquery-1.11.2.js"></script>
+<script>
+  var checkedId = false;
+  var checkedPassword = false;
+  var checkedSex = false;
+  
+  function checkId() {
+    //1. id 입력 상자의 값을 가져온다.
+    var id = $('#id').val();
+    if(id == "")																							// 아무것도 입력 안했을때 초기상태로 설정. false반환.
+    {
+      $("#id").css("border", "1px solid #cccccc");
+      $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075)");
+      document.getElementById("checkResultId").innerText = "";
+      checkedId = false;
+    }else{
+	
+	    //2. 서버에 중복검사를 요청한다.
+	    $.getJSON("./wkmb/check.wkmb?id=" + id, function(obj) {
+	      if (obj.result == "") {
+	        //$("#id").css("border", "2px solid green");												// jquery에서 css를 적용. id객체가 있으면 테두리를 2px크기로 하고 초록색으로 변경
+	        $("#id").css("border-color", "#3c763d");													// 테두리색을 초록색으로 적용.
+	        $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168");			// 테두리 그림자색을 지정.
+	        $("#checkResultId").css("display", "");														// display 보이게해줌
+	        $("#checkResultId").css("text-align", "right");
+	        document.getElementById("checkResultId").innerText = "사용할 수 있습니다.";					// tooltip-문구
+	        checkedId = true;
+	      } else {
+	        //$("#id").css("border", "2px solid red");													// 중복된 아이디일때 id text테두리를 빨간색으로 변경
+	        $("#id").css("border-color", "#843534");													// 테두리색을 빨간색으로 적용.
+	        $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483");			// 테두리 그림자색 지정.
+	        $("#checkResultId").css("display", "");
+	        document.getElementById("checkResultId").innerText = "존재하는 아이디입니다.";
+	        checkedId = false;
+	      }
+	    });
+    }
+  }
+  
+  function checkPassword() {
+	// password입력 상자의 값과 password2 입력 상자의 값을 가져온다.
+	var password = $('#password').val();
+	var password2 = $('#password2').val();
+    if(password2 == "")																							// 아무것도 입력 안했을때 초기상태로 설정. false반환.
+    {
+      $("#password2").css("border", "1px solid #cccccc");
+      $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075)");
+      document.getElementById("checkResultPwd2").innerText = "";
+      checkedPassword = false;
+    }else{
+      if (password != password2) {																				// 비밀번호 재입력했을때 비밀번호와 동일하지 않다면.
+        $("#password2").css("border-color", "#843534");
+        $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483");
+        $("#checkResultPwd2").css("display", "");
+        document.getElementById("checkResultPwd2").innerText = "비밀번호가 일치하지 않습니다.";
+        checkedPassword = false;
+      } else {
+        $("#password2").css("border-color", "#3c763d");
+        $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168");
+        $("#checkResultPwd2").css("display", "");
+        document.getElementById("checkResultPwd2").innerText = "비밀번호가 일치합니다.";
+        checkedPassword = true;
+      }
+    }
+  }
+  
+  function validate() {
+    if ($('#id').val() == "") {																			// id를 입력안하고 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultId").innerText = "아이디는 필수 입력 항목입니다.";
+      return false;
+    }
+
+    if ($('#password').val() == "") {																	// 암호를 입력안하고 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultPwd").innerText = "비밀번호는 필수 입력 항목입니다.";
+      return false;
+    }
+
+	if ($('#password2').val() == "") {																	// 암호 재확인을 입력안하고 제출시
+  	  $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultPwd2").innerText = "비밀번호 재입력은 필수 입력 항목입니다.";
+      return false;
+    }
+
+    if ($('#name').val() == "") { 																		// 이름을 입력안하고 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultName").innerText = "이름은 필수 입력 항목입니다.";
+      return false;
+    }
+
+    if (!checkedSex) { 																					// 성별을 체크안하고 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultSex").innerText = "성별은 필수 체크 항목입니다.";
+      return false;
+    }
+
+    if (!checkedId) { 																					// 아이디 중복확인을 안하고 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      document.getElementById("checkResultId").innerText = "아이디 중복확인을 해주세요.";
+      return false;
+    }
+
+    if (!checkedPassword) { 																			// 패스워드 일치가 안될때 제출시
+      $("#submit").css("color", "#fff");
+      $("#submit").css("background-color", "#d9534f");
+      $("#submit").css("border-color", "#d43f3a");
+      return false;
+    }
+
+    return true;
+
+  }
+</script>
+
+</head>
+<body>
+	<div id="container">
+		<div id="gfheader">
+			<div id="header">
+				<div id="title">
+					<img src="./files/logo.png"/>
+				</div>
+				<div id="login">
+					<form action="./wkmb/login.wkmb" method="post">
+				    	<input type="text" class="form-control1" name="id" placeholder="아이디">
+						<input type="password" class="form-control1" name="password" placeholder="비밀번호">
+						<button type="submit" class="btn btn-default">Login</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="gfcontent">
+			<div id=content>
+				<div id="left-content">
+					<div id="description">
+						<h1>환영합니다.</h1>
+						<h1>누가 나를 가장 잘 알까요?</h1>
+						<img src="./files/index1.png"/>
+					</div>
+				</div>
+				<div id="right-content">
+					<div id="register">
+						<h1>회원가입</h1>
+						<br>
+						<form action="wkmb/signUp.wkmb" method="post" enctype="multipart/form-data" onsubmit="return validate();">
+							<div style="position: relative;">
+								<input class="form-control" id="id" name="id" type="text" onkeyup="checkId()" placeholder="아이디">
+								<p id="checkResultId" style="position:absolute; display:none; left: -200px; top: 0px; border: 1px solid black;"></p>
+							</div>
+							<br>
+							<div style="position: relative;">
+								<input class="form-control" id="password" name="password" type="password" placeholder="비밀번호">
+								<p id="checkResultPwd" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+							</div>
+							<br>
+							<div style="position: relative;">
+								<input class="form-control" id="password2" type="password" onkeyup="checkPassword()" placeholder="비밀번호 재입력">
+								<p id="checkResultPwd2" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+							</div>
+							<br>
+							<div style="position: relative;">
+								<input class="form-control" id="name" name="name" type="text" placeholder="이름">
+								<p id="checkResultName" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+							</div>
+							<br>
+							<div style="position: relative;">
+								<div id="sex-pont">
+									<input type="radio" name="sex" id="male" value="남자" onclick="checkedSex=true;"> 남자 &nbsp;&nbsp;&nbsp;
+									<input type="radio" name="sex" id="female" value="여자" onclick="checkedSex=true;"> 여자
+								</div>
+								<p id="checkResultSex" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+							</div>
+							<br>
+							<button type="submit" id="submit" class="btn btn-success">가입하기</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
