@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wkmb.dao.UserDao">
+
+	<!-- 회원가입 -->
+	<insert id="insert" parameterType="User">
+		INSERT INTO users(id, pwd, name, sex)
+		VALUES(#{id}, #{password}, #{name}, #{sex})
+	</insert>
+
+	<!-- 세션 설립 -->
+	<select id="loginInfo" parameterType="map" resultType="User">
+		SELECT uid, id, name, sex, photo, message
+		FROM users
+		WHERE id=#{id} and pwd=#{password}
+	</select>
+
+	<!-- 아이디 중복검사 -->
+	<select id="exist" parameterType="string" resultType="int">
+		SELECT count(id)
+		FROM users
+		WHERE id=#{id}
+	</select>
+	
+	<!-- id값을 입력하면 그에 해당하는 uid 반환 -->
+	<select id="selectUserUid" parameterType="String" resultType="int">
+		SELECT uid
+			FROM users
+			WHERE id=#{id}
+	</select>
+	
+
+</mapper>
