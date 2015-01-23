@@ -211,6 +211,7 @@
       $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultId").css("display", "");
       document.getElementById("checkResultId").innerText = "아이디는 필수 입력 항목입니다.";
       return false;
     }
@@ -219,6 +220,7 @@
       $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultPwd").css("display", "");
       document.getElementById("checkResultPwd").innerText = "비밀번호는 필수 입력 항목입니다.";
       return false;
     }
@@ -227,6 +229,7 @@
   	  $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultPwd2").css("display", "");
       document.getElementById("checkResultPwd2").innerText = "비밀번호 재입력은 필수 입력 항목입니다.";
       return false;
     }
@@ -235,6 +238,7 @@
       $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultName").css("display", "");
       document.getElementById("checkResultName").innerText = "이름은 필수 입력 항목입니다.";
       return false;
     }
@@ -243,6 +247,7 @@
       $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultSex").css("display", "");
       document.getElementById("checkResultSex").innerText = "성별은 필수 체크 항목입니다.";
       return false;
     }
@@ -251,6 +256,7 @@
       $("#submit").css("color", "#fff");
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
+      $("#checkResultId").css("display", "");
       document.getElementById("checkResultId").innerText = "아이디 중복확인을 해주세요.";
       return false;
     }
@@ -300,22 +306,22 @@
 						<form action="wkmb/signUp.wkmb" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 							<div style="position: relative;">
 								<input class="form-control" id="id" name="id" type="text" onkeyup="checkId()" placeholder="아이디">
-								<p id="checkResultId" style="position:absolute; display:none; left: -200px; top: 0px; border: 1px solid black;"></p>
+								<p id="checkResultId" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="password" name="password" type="password" placeholder="비밀번호">
-								<p id="checkResultPwd" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+								<p id="checkResultPwd" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="password2" type="password" onkeyup="checkPassword()" placeholder="비밀번호 재입력">
-								<p id="checkResultPwd2" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+								<p id="checkResultPwd2" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="name" name="name" type="text" placeholder="이름">
-								<p id="checkResultName" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+								<p id="checkResultName" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
@@ -323,7 +329,7 @@
 									<input type="radio" name="sex" id="male" value="남자" onclick="checkedSex=true;"> 남자 &nbsp;&nbsp;&nbsp;
 									<input type="radio" name="sex" id="female" value="여자" onclick="checkedSex=true;"> 여자
 								</div>
-								<p id="checkResultSex" style="position:absolute; display:none; left: -150px; top: 0px; border: 1px solid black;"></p>
+								<p id="checkResultSex" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
 							</div>
 							<br>
 							<button type="submit" id="submit" class="btn btn-success">가입하기</button>
