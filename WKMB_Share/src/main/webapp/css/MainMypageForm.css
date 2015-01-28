@@ -1,0 +1,425 @@
+@CHARSET "UTF-8";
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFF9EC;
+}
+
+#container {
+	text-align: left;
+	width: 100%;
+	height: 100%;
+}
+
+#gfheader {
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	background-color: #FF6757;
+	z-index: 2;
+}
+
+#header {
+	width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#header-image {
+	float: left;
+	width: 70px;
+	height: 50px;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+#header-title {
+	position: absolute;
+	width: 100px;
+	height: 50px;
+	font-family: 'Hanna';
+	font-size: 30px;
+	font-weight: bold;
+	margin: 5px 500px 5px 420px;
+}
+
+#header-button {
+	float: right;
+	margin: 10px;
+	font-size: 14px;
+	height: 40px;
+}
+
+#gfcontent {
+	width: 100%;
+	min-height: 900px;
+}
+
+#content {
+	width: 1000px;
+	min-height: 900px;
+	margin: 0 auto;
+}
+
+#left-content {
+	float: left;
+	width: 750px;
+	min-height: 800px;
+	margin-top: 80px;
+}
+
+
+
+
+#friendBar {
+	position: fixed;
+	float: right;
+	width: 250px;
+	height: 610px;
+	border: 2px solid black;
+	margin: 100px 750px 0px;
+	overflow-y: scroll;
+	border: 1.5px solid #CCB1FF;
+	border-radius: 7px;
+}
+
+#friendBar::-webkit-scrollbar {
+	width: 12px;
+}
+
+#friendBar::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+#friendBar::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+
+#friendBar-mode0 {
+	padding-left: 10px;
+}
+
+#friendBar-mode1 {
+	padding-left: 10px;
+}
+
+.searchedFriend {
+	font-weight: bold;
+}
+
+
+
+/* header-button을 위한 css */
+ul li {
+	float: left;
+	padding: 10px;
+	list-style-type: none;
+}
+
+#header-button-text {
+	font-weight: bold;
+	color: white;
+	margin-left: 2px;
+	margin-right:2px;
+	padding:5px;
+}
+#header-button-text:hover {
+	font-weight: bold;
+	color: white;
+	background-color: #FF4F57;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-right:2px;
+	padding:5px;
+}
+
+#header-button-myname-box {
+	position: absolute;
+	background: white;
+	-webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-top: 25px;
+	margin-left: -100px;
+	width: 320px;
+	z-index: 5;
+	visibility: hidden;
+}
+
+#header-button-myname-box:before {
+	content: '';
+	position: relative;
+	margin-left: 75px; /* 뾰족 위치 */
+	top: -10px;
+	background: white;
+	display: block;
+	width: 50px;
+	height: 50px;
+	-webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#header-button-myname-box-inner {
+	background: white;
+	margin-top: -50px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	/* transform z-index hack */
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+	padding: 20px;
+	font-size: 15px;
+}
+
+#header-button-friend-box {
+	background: white;
+	-webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-top: 25px;
+	margin-left: -178px; /* 위치 좌우로 바꿀수 있음 name 에서 -78px만큼하면 겹친다.*/
+	width: 330px;
+	position: fixed;
+	z-index: 5;
+	visibility: hidden;
+}
+
+#header-button-friend-box:before {
+	content: '';
+	position: relative;
+	margin-left: 150px;
+	top: -10px;
+	background: white;
+	display: block;
+	width: 50px;
+	height: 50px;
+	-webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#header-button-friend-box-inner {
+	background: white;
+	margin-top: -50px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	/* transform z-index hack */
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+	padding: 30px;
+	font-size: 15px;
+}
+
+
+
+#changeMyProfile-name {
+	font-size: 30px;
+}
+
+#changeMyProfile {
+	width:100%;
+}
+
+#changeMyProfile-ButtonMessage {
+	width:200px;
+	height:45px;
+	margin-left:25px;
+}
+
+#changeMyProfile-info {
+	width:300px;
+	height:110px;
+}
+
+#changeMyProfile-text {
+	float:right;
+	margin-top:10px;
+}
+
+#requestFriendList-div {
+	width:100%;
+	height:45px;
+}
+
+#requestFriendList-info {
+	float:left;
+}
+
+#requestFriendList-buttons {
+	float:right;
+	padding:5px;
+}
+
+#requestFriendList-ok {
+	margin-right:10px;
+	cursor:pointer;
+}
+
+#requestFriendList-ok:hover {
+	color:green;
+}
+
+#requestFriendList-remove {
+	cursor:pointer;
+}
+
+#requestFriendList-remove:hover {
+	color:red;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 10pt;
+    text-align: right;
+    background: white;
+    cursor: inherit;
+    
+    display: block;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+}
+	
+
+
+
+.profile-photo-form-control {
+	float: left;
+	width: 84px;
+	height: 89px;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.profile-text-form-control {
+	height: 90px;
+	margin: 10px 10px;
+	padding-top: 5px;
+}
+
+.profile-nameId-form-control {
+	float: left;
+	width: 190px;
+}
+
+.profile-name-form-control {
+	font-size: 33px;
+	font-family: 'Hanna';
+	margin-left: 20px;
+}
+
+.profile-id-form-control {
+	font-size: 20px;
+	margin-left: 20px;
+}
+
+.friendBar-subTitle {
+	font-size: 25px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	font-family: 'Hanna';
+	border-bottom: 1px solid #CCB1FF;
+	width: 216px;
+}
+
+.friendsName {		/* 친구목록의 위아래간격을 주기위해 */
+	margin-bottom: -19px;
+}
+
+.input-form-control1 {
+	display: inline;
+	width: 216px;
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.input-form-control1:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+}
+
+.input-form-control2 {
+	display: inline;
+	width: 170px;
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.input-form-control2:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+}
