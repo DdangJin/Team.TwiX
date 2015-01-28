@@ -110,6 +110,10 @@ html, body {
 	font-weight: bold;
 }
 
+.friend-link {
+	color: black;
+}
+
 
 
 /* header-button을 위한 css */

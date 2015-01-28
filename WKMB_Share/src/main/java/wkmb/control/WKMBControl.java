@@ -168,7 +168,11 @@ public class WKMBControl {
 
     if(user != null)
     {
-      int pageUid = userDao.selectUserUid(id);
+      int pageUid;
+      if(id != null)
+        pageUid = userDao.selectUserUid(id);
+      else
+        pageUid = user.getUid();
       
       mv.addObject("friendList", friendDao.selectFriendList(user.getUid()));
       mv.addObject("pageUser", userDao.selectOne(pageUid));
@@ -378,7 +382,55 @@ public class WKMBControl {
     User user = (User)(session.getAttribute("loginInfo"));
     
     if(user != null)
+      mv.addObject("questionList", questionDao.selectQuestionList(user.getUid()));
+    
+    mv.setViewName("./make.jsp");
+    return mv;
+  }
+  
+  @RequestMapping("/makeOne")
+  public String makeOne(HttpSession session)
+  {
+    return "./makeOne.jsp";
+  }
+  
+  @RequestMapping("/insertQuestion")
+  public String insertQuestion(String question[], String answer[], HttpSession session)
+  {
+    User user = (User)(session.getAttribute("loginInfo"));
+    
+    if(user != null)
+      for(int i = 0; i< question.length; i++)
+        questionDao.insertQuestion(new Question().setUid(user.getUid())
+                                                 .setQuestion(question[i])
+                                                 .setAnswer(answer[i]));
+    
+    return "redirect:./make.wkmb";
+  }
+  
+  @RequestMapping("/updateQuestion")
+  public String updateQuestion(int[] qid, String[] question, String[] answer, HttpSession session)
+  {
+    User user = (User)(session.getAttribute("loginInfo"));
+    
+    if(user != null)
+      for(int i = 0; i< qid.length; i++)
+        questionDao.updateQuestion(
+            new Question().setQid(qid[i]).setUid(user.getUid())
+                          .setQuestion(question[i]).setAnswer(answer[i]));
+    
+    return "redirect:./myPage.wkmb";
+  }
+  
+  @RequestMapping("/deleteQuestion")
+  public ModelAndView deleteQuestion(int qid, HttpSession session)
+  {
+    ModelAndView mv = new ModelAndView();
+    User user = (User)session.getAttribute("loginInfo"); 
+    
+    if(user != null)
     {
+      questionDao.deleteQuestion(user.getUid(), qid);
       mv.addObject("questionList", questionDao.selectQuestionList(user.getUid()));
     }
     
@@ -440,7 +492,7 @@ public class WKMBControl {
     }
     
     
-    mv.setViewName("./reloadApplyFriendList.jsp");
+    mv.setViewName("./reloadFriendProfile.jsp");
     return mv;
   }
   
@@ -454,7 +506,7 @@ public class WKMBControl {
       mv.addObject("friendList", friendDao.selectFriendList(user.getUid()));
     
     
-    mv.setViewName("./reloadApplyFriendList.jsp");
+    mv.setViewName("./reloadFriendList.jsp");
     return mv;
   }
   

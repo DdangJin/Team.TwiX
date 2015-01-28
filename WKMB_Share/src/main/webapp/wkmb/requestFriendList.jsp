@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:forEach var="friend" items="${friendList}">
 	<c:if test="${friend.mode == 2}">
-                				<div id="requestFriendList-div">
+		<div id="requestFriendList-div">
 			<div id="requestFriendList-info">
 				<img src="../files/${friend.photo}" width="40" height="44">
 				<span id="${friend.name}">${friend.name}(${friend.id})</span>																</div>

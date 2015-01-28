@@ -275,8 +275,7 @@
 								<c:forEach var="friend" items="${friendList}">
 									<c:if test="${friend.mode == 0}">
 										<div class="friendsName">
-										<!-- 수연아 이 아래 소스만 복붙하면 됨. -->
-											<a href="./myPage.wkmb?id=${friend.id}"><span id="${friend.name}">${friend.name}(${friend.id})</span></a>
+											<a href="./myPage.wkmb?id=${friend.id}" class="friend-link"><span id="${friend.name}">${friend.name}(${friend.id})</span></a>
 										</div>
 										<br>
 									</c:if>
@@ -319,7 +318,6 @@
 
 		</c:otherwise>
 	</c:choose>
-	
 	
 <!-- script -->
 <script src="../js/bootstrap.min.js"></script>
@@ -391,12 +389,11 @@
 	      if (obj.result == "") {
 	        alert("없는 사용자입니다!");
 	      } else {
-    	  	$("#friendBar-mode1").find("form").load("./reloadApplyFriendList.wkmb");
-	    	  
+	        $("#friendBar-mode1").find("form").load("./reloadApplyFriendList.wkmb");
+	        
 	        alert("친구 추가 성공!");
 	      }
 	    });
-	    
 	  }
 	
 	}
@@ -435,16 +432,16 @@
 		  tmp2.style.visibility="hidden";
 	  }
   	}
-  	
+
 
 	/* 친구 요청 목록과 내 프로필을 수정하기 위한 함수들 */
  	function requestAccept(fuid)	// 친구 요청 수락
 	{
-		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid);
-		
-		$("#profile").load("./reloadFriendProfile.wkmb");
-		
-		$("#friendBar-mode0").load("./reloadFriendList.wkmb");
+ 		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid, function(){
+ 			$("#profile").load("./reloadFriendProfile.wkmb");
+ 			
+ 			$("#friendBar-mode0").load("./reloadFriendList.wkmb");
+ 		});
 	}
 	
 	function requestDeny(fuid)		// 친구 요청 거절
@@ -468,6 +465,7 @@
 	    $("#changeMyProfile").load("./changeMyProfile.wkmb");
 	    
 	    $("#myProfile").load("./reloadMyProfile.wkmb");
+
     }
 	
 	// 내 사진 삭제 => 기본 사진으로

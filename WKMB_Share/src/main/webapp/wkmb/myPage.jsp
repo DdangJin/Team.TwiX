@@ -369,9 +369,9 @@
 	
 	function requestAccept(fuid)	// 친구 요청 수락
 	{
-		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid);
-		
-		$("#friendBar-mode0").load("./reloadFriendList.wkmb");
+		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid, function(){
+ 			$("#friendBar-mode0").load("./reloadFriendList.wkmb");
+ 		});
 	}
 	
 	function requestDeny(fuid)		// 친구 요청 거절

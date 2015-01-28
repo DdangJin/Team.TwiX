@@ -9,5 +9,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM questions
 			WHERE uid=#{uid}
 	</select>
+	
+	<insert id="insertQuestion" parameterType="Question">
+		INSERT INTO questions(uid, question, answer)
+			VALUES(#{uid}, #{question}, #{answer})
+	</insert>
+	
+	<update id="updateQuestion" parameterType="Question">
+		UPDATE questions
+			SET question=#{question}, answer=#{answer}
+			WHERE uid=#{uid}
+			  AND qid=#{qid}
+	</update>
+	
+	<delete id="deleteQuestion" parameterType="map">
+		DELETE FROM questions
+			WHERE uid=#{uid}
+			  AND qid=#{qid}
+	</delete>
 
 </mapper>

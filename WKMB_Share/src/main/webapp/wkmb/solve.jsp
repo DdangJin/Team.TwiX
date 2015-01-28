@@ -10,47 +10,9 @@
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="../css/mystyle.css">
+<link rel="stylesheet" href="../css/SolveAnswerMakeForm.css">
 
 <style>
-	html, body {
-		margin: 0px;
-		padding: 0px;
-		background-color: #FFF9EC;
-	}
-	
-	#container {
-		width: 100%;
-		height: 100%;
-	}
-	
-	#gfheader {
-		width: 100%;
-		height: 50px;
-		background-color: #FF6757;
-	}
-	
-	#header {
-		width: 1000px;
-		height: 100%;
-		margin: 0 auto;
-	}
-	
-	#userName {
-		margin: 0 auto;
-		width: 100%;
-		height: 40px;
-		text-align: center;
-		font-family: 'Hanna';
-		font-size: 30px;
-		font-weight: bold;
-		padding-top: 5px;
-	}
-	
-	#content {
-		width: 1000px;
-		height: 900px;
-		margin: 0 auto;
-	}
 	
 	#nav {
 		width: 502px;
@@ -181,27 +143,29 @@
 				</div>
 				
 				<div id="content">
-					<div id="nav">
-						<div class="section" onclick="changeQuestion(1)">1번</div>
-						<div class="section" onclick="changeQuestion(2)">2번</div>
-						<div class="section" onclick="changeQuestion(3)">3번</div>
-						<div class="section" onclick="changeQuestion(4)">4번</div>
-						<div class="section" onclick="changeQuestion(5)">5번</div>
-					</div>
-					<form action="./answer.wkmb" method="post" onsubmit="return submitAnswer();">
-						<c:forEach var="question" items="${questionList}" varStatus="vs">
-						<div id="question${vs.index + 1}" class="question-div">
-							<div id="question-question">
-								<span style="font-weight:bold;">[${vs.index + 1}번]&nbsp;&nbsp;</span>
-								<span>${question.question}</span>
+					<div id="center-content">
+						<div id="nav">
+							<div class="section" onclick="changeQuestion(1)">1번</div>
+							<div class="section" onclick="changeQuestion(2)">2번</div>
+							<div class="section" onclick="changeQuestion(3)">3번</div>
+							<div class="section" onclick="changeQuestion(4)">4번</div>
+							<div class="section" onclick="changeQuestion(5)">5번</div>
+						</div>
+						<form action="./answer.wkmb" method="post" onsubmit="return submitAnswer();">
+							<c:forEach var="question" items="${questionList}" varStatus="vs">
+							<div id="question${vs.index + 1}" class="question-div">
+								<div id="question-question">
+									<span style="font-weight:bold;">[${vs.index + 1}번]&nbsp;&nbsp;</span>
+									<span>${question.question}</span>
+								</div>
+								<input type="text" id="answer${vs.index}" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 							</div>
-							<input type="text" id="answer${vs.index}" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
-						</div>
-						</c:forEach>
-						<div id="button-submit">
-							<button id="button-submit-button" class="btn btn-default" type="submit">제출</button>
-						</div>
-					</form>
+							</c:forEach>
+							<div id="button-submit">
+								<button id="button-submit-button" class="btn btn-default" type="submit">제출</button>
+							</div>
+						</form>
+					</div>
 				</div>
 				
 			</div>

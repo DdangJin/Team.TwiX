@@ -12,8 +12,7 @@
 <c:forEach var="friend" items="${friendList}">
 	<c:if test="${friend.mode == 0}">
 		<div class="friendsName">
-		<!-- 수연아 이 아래 소스만 복붙하면 됨. -->
-			<a href="./myPage.wkmb?id=${friend.id}"><span id="${friend.name}">${friend.name}(${friend.id})</span></a>
+			<a href="./myPage.wkmb?id=${friend.id}" class="friend-link"><span id="${friend.name}">${friend.name}(${friend.id})</span></a>
 		</div>
 		<br>
 	</c:if>
