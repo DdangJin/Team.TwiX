@@ -75,4 +75,55 @@ public class UserDao {
     }
   }
   
+  // id값을 입력하면 그에 해당하는 uid 반환
+  public int selectUserUid(String id)
+  {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    try
+    {
+      return sqlSession.selectOne("wkmb.dao.UserDao.selectUserUid", id);
+    }catch(Exception e)
+    {
+      e.printStackTrace();
+      return -1;
+    }finally
+    {
+      sqlSession.close();
+    }
+  }
+  
+  // uid값을 입력하면 그에 해당하는 User 반환
+  public User selectOne(int uid) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    try
+    {
+      return sqlSession.selectOne("wkmb.dao.UserDao.selectOne", uid);
+    }catch(Exception e)
+    {
+      e.printStackTrace();
+      return null;
+    }finally
+    {
+      sqlSession.close();
+    }
+  }
+
+  
+  public void updateUser(User user) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+
+    try
+    {
+      sqlSession.selectOne("wkmb.dao.UserDao.updateUser", user);
+    }catch(Exception e)
+    {
+      e.printStackTrace();
+    }finally
+    {
+      sqlSession.close();
+    }
+  }
+
 }

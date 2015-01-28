@@ -6,8 +6,10 @@
 
 <link rel="stylesheet" href="./css/bootstrap.css">
 <style>
-	body {
-		margin: 0;
+
+	html, body {
+		margin:0px;
+		padding:0px;
 	}
 
 	#container {
@@ -22,7 +24,7 @@
 	}
 	
 	#header {
-		width: 1100px;
+		width: 1000px;
 		height: 100%;
 		margin: 0 auto;
 		padding-top: 19px;
@@ -48,7 +50,7 @@
 	}
 	
 	#content {
-		width: 1100px;
+		width: 1000px;
 		height:900px;
 		margin: 0 auto;
 		padding-top: 20px;
@@ -131,6 +133,35 @@
 	  	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	         	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
+	
+	.arrow_box {
+	position: relative;
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+	}
+	.arrow_box:after, .arrow_box:before {
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+	
+	.arrow_box:after {
+		border-color: rgba(136, 183, 213, 0);
+		border-top-color: #88b7d5;
+		border-width: 10px;
+		margin-left: -10px;
+	}
+	.arrow_box:before {
+		border-color: rgba(194, 225, 245, 0);
+		border-top-color: #c2e1f5;
+		border-width: 16px;
+		margin-left: -16px;
+	}
 
 	
 	/* #login input[type=text], #login input[type=password] {
@@ -138,6 +169,15 @@
 		width:170px;
 		height:25px;
 	} */
+	
+	/* tooltip */
+	.register-tooltip {
+		position:absolute;
+		display:none;
+		top: -20px;
+		border: 1px solid black;
+	}
+	
 </style>
 
 <script type="text/javascript" src="./js/jquery-1.11.2.js"></script>
@@ -153,7 +193,7 @@
     {
       $("#id").css("border", "1px solid #cccccc");
       $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075)");
-      document.getElementById("checkResultId").innerText = "";
+      document.getElementById("checkResultId").style.visibility = "hidden";									// tooltip이 보이지 않게함.
       checkedId = false;
     }else{
 	
@@ -164,7 +204,7 @@
 	        $("#id").css("border-color", "#3c763d");													// 테두리색을 초록색으로 적용.
 	        $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168");			// 테두리 그림자색을 지정.
 	        $("#checkResultId").css("display", "");														// display 보이게해줌
-	        $("#checkResultId").css("text-align", "right");
+	        document.getElementById("checkResultId").style.visibility = "visible";						// tooltip이 보이게 해줌.
 	        document.getElementById("checkResultId").innerText = "사용할 수 있습니다.";					// tooltip-문구
 	        checkedId = true;
 	      } else {
@@ -172,6 +212,7 @@
 	        $("#id").css("border-color", "#843534");													// 테두리색을 빨간색으로 적용.
 	        $("#id").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483");			// 테두리 그림자색 지정.
 	        $("#checkResultId").css("display", "");
+	        document.getElementById("checkResultId").style.visibility = "visible";
 	        document.getElementById("checkResultId").innerText = "존재하는 아이디입니다.";
 	        checkedId = false;
 	      }
@@ -187,6 +228,7 @@
     {
       $("#password2").css("border", "1px solid #cccccc");
       $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075)");
+      document.getElementById("checkResultPwd2").style.visibility = "hidden";
       document.getElementById("checkResultPwd2").innerText = "";
       checkedPassword = false;
     }else{
@@ -194,12 +236,14 @@
         $("#password2").css("border-color", "#843534");
         $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483");
         $("#checkResultPwd2").css("display", "");
+        document.getElementById("checkResultPwd2").style.visibility = "visible";
         document.getElementById("checkResultPwd2").innerText = "비밀번호가 일치하지 않습니다.";
         checkedPassword = false;
       } else {
         $("#password2").css("border-color", "#3c763d");
         $("#password2").css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168");
         $("#checkResultPwd2").css("display", "");
+        document.getElementById("checkResultPwd2").style.visibility = "visible";
         document.getElementById("checkResultPwd2").innerText = "비밀번호가 일치합니다.";
         checkedPassword = true;
       }
@@ -212,6 +256,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultId").css("display", "");
+      document.getElementById("checkResultId").style.visibility = "visible";
       document.getElementById("checkResultId").innerText = "아이디는 필수 입력 항목입니다.";
       return false;
     }
@@ -221,6 +266,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultPwd").css("display", "");
+      document.getElementById("checkResultPwd").style.visibility = "visible";
       document.getElementById("checkResultPwd").innerText = "비밀번호는 필수 입력 항목입니다.";
       return false;
     }
@@ -230,6 +276,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultPwd2").css("display", "");
+      document.getElementById("checkResultPwd2").style.visibility = "visible";
       document.getElementById("checkResultPwd2").innerText = "비밀번호 재입력은 필수 입력 항목입니다.";
       return false;
     }
@@ -239,6 +286,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultName").css("display", "");
+      document.getElementById("checkResultName").style.visibility = "visible";
       document.getElementById("checkResultName").innerText = "이름은 필수 입력 항목입니다.";
       return false;
     }
@@ -248,6 +296,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultSex").css("display", "");
+      document.getElementById("checkResultSex").style.visibility = "visible";
       document.getElementById("checkResultSex").innerText = "성별은 필수 체크 항목입니다.";
       return false;
     }
@@ -257,6 +306,7 @@
       $("#submit").css("background-color", "#d9534f");
       $("#submit").css("border-color", "#d43f3a");
       $("#checkResultId").css("display", "");
+      document.getElementById("checkResultId").style.visibility = "visible";
       document.getElementById("checkResultId").innerText = "아이디 중복확인을 해주세요.";
       return false;
     }
@@ -305,23 +355,23 @@
 						<br>
 						<form action="wkmb/signUp.wkmb" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 							<div style="position: relative;">
-								<input class="form-control" id="id" name="id" type="text" onkeyup="checkId()" placeholder="아이디">
-								<p id="checkResultId" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
+								<input class="form-control" id="id" name="id" type="text" class="arrow_box" onkeyup="checkId()" placeholder="아이디">
+								<p id="checkResultId" class="register-tooltip"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="password" name="password" type="password" placeholder="비밀번호">
-								<p id="checkResultPwd" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
+								<p id="checkResultPwd" class="register-tooltip"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="password2" type="password" onkeyup="checkPassword()" placeholder="비밀번호 재입력">
-								<p id="checkResultPwd2" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
+								<p id="checkResultPwd2" class="register-tooltip"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
 								<input class="form-control" id="name" name="name" type="text" placeholder="이름">
-								<p id="checkResultName" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
+								<p id="checkResultName" class="register-tooltip"></p>
 							</div>
 							<br>
 							<div style="position: relative;">
@@ -329,7 +379,7 @@
 									<input type="radio" name="sex" id="male" value="남자" onclick="checkedSex=true;"> 남자 &nbsp;&nbsp;&nbsp;
 									<input type="radio" name="sex" id="female" value="여자" onclick="checkedSex=true;"> 여자
 								</div>
-								<p id="checkResultSex" style="position:absolute; display:none; top: -20px; border: 1px solid black;"></p>
+								<p id="checkResultSex" class="register-tooltip"></p>
 							</div>
 							<br>
 							<button type="submit" id="submit" class="btn btn-success">가입하기</button>

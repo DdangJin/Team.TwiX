@@ -5,37 +5,62 @@ import java.util.Date;
 public class Friend extends User{
   protected int fuid;
   protected int mode;
-  protected int score;
+  protected int correctCount;
+  protected int solveCount;
+  protected int threeTime;
   protected Date lastDate;
-
-  public int getUid() {
-    return uid;
-  }
-  public void setUid(int uid) {
-    this.uid = uid;
-  }
+  
   public int getFuid() {
     return fuid;
   }
-  public void setFuid(int fuid) {
+  public Friend setFuid(int fuid) {
     this.fuid = fuid;
+    
+    return this;
   }
   public int getMode() {
     return mode;
   }
-  public void setMode(int mode) {
+  public Friend setMode(int mode) {
     this.mode = mode;
+    
+    return this;
   }
-  public int getScore() {
-    return score;
+  public int getCorrectCount() {
+    return correctCount;
   }
-  public void setScore(int score) {
-    this.score = score;
+  public Friend setCorrectCount(int correctCount) {
+    this.correctCount = correctCount;
+    
+    return this;
+  }
+  public int getSolveCount() {
+    return solveCount;
+  }
+  public Friend setSolveCount(int solveCount) {
+    this.solveCount = solveCount;
+    
+    return this;
+  }
+  public int getThreeTime() {
+    return threeTime;
+  }
+  public Friend setThreeTime(int threeTime) {
+    this.threeTime = threeTime;
+    
+    return this;
   }
   public Date getLastDate() {
     return lastDate;
   }
-  public void setLastDate(Date lastDate) {
+  public Friend setLastDate(Date lastDate) {
     this.lastDate = lastDate;
+    
+    return this;
   }
+  public int getScore() // 스코어 점수를 처리하기 위한 세터 메소드
+  {
+    return (int)(((float)correctCount/solveCount) * 100);
+  }
+  
 }

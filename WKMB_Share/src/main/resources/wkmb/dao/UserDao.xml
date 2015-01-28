@@ -31,5 +31,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE id=#{id}
 	</select>
 	
+	<!-- uid를 입력하면 해당하는 유저의 정보를 반환 -->
+	<select id="selectOne" parameterType="int" resultType="User">
+		SELECT uid, id, name, sex, photo, message
+			FROM users
+			WHERE uid=#{uid}
+	</select>
+	
+	<!-- uid를 받아 파라미터로 온 User 정보로 값 변경 (사진 변경과 사진 삭제에 쓰임) -->
+	<update id="updateUser" parameterType="User">
+		UPDATE users
+			SET photo=#{photo}, message=#{message}
+			WHERE uid=#{uid}
+	</update>
 
 </mapper>

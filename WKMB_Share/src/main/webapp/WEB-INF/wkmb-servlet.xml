@@ -23,7 +23,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/wkmb?useUnicode=true&amp;characterEncoding=utf8" />
+			value="jdbc:mysql://192.168.1.22:3306/wkmb?useUnicode=true&amp;characterEncoding=utf8" />		<!-- DB서버를 동진이 컴퓨터로 사용 -->
 		<property name="username" value="root" />
 		<property name="password" value="1234" />
 	</bean>

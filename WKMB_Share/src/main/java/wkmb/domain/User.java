@@ -12,44 +12,58 @@ public class User {
   public int getUid() {
     return uid;
   }
-  public void setUid(int uid) {
+  public User setUid(int uid) {
     this.uid = uid;
+    
+    return this;
   }
   public String getId() {
     return id;
   }
-  public void setId(String id) {
+  public User setId(String id) {
     this.id = id;
+    
+    return this;
   }
   public String getPassword() {
     return password;
   }
-  public void setPassword(String password) {
+  public User setPassword(String password) {
     this.password = password;
+    
+    return this;
   }
   public String getName() {
     return name;
   }
-  public void setName(String name) {
+  public User setName(String name) {
     this.name = name;
+    
+    return this;
   }
   public String getSex() {
     return sex;
   }
-  public void setSex(String sex) {
+  public User setSex(String sex) {
     this.sex = sex;
+    
+    return this;
   }
   public String getPhoto() {
     return photo;
   }
-  public void setPhoto(String photo) {
+  public User setPhoto(String photo) {
     this.photo = photo;
+    
+    return this;
   }
   public String getMessage() {
     return message;
   }
-  public void setMessage(String message) {
+  public User setMessage(String message) {
     this.message = message;
+    
+    return this;
   }
   
   
