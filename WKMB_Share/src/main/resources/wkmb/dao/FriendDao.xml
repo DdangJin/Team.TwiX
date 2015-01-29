@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 친구 목록 조회(친구 바) -->
 	<select id="selectFriendList" parameterType="int" resultType="Friend">
-		SELECT f.fuid, f.mode, u.id, u.name, u.sex
+		SELECT f.fuid, f.mode, u.id, u.name, u.sex, u.photo
 			FROM friends f left join users u on f.fuid=u.uid
 			WHERE f.uid=#{value}
 			ORDER BY u.name, u.id
