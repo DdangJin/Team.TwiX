@@ -135,7 +135,7 @@ public class WKMBControl {
     User user = (User)session.getAttribute("loginInfo");
     
     if(friendDao.insertFriend(fid, user.getUid()))
-      mv.addObject("checkId", fid);
+      mv.addObject("check", fid);
   
     mv.setViewName("./check.jsp");
     return mv;
@@ -481,7 +481,7 @@ public class WKMBControl {
 //    
 //    if(FriendDao.exist(id))   // 존재할 경우
 //    {
-//      mv.addObject("checkId", id);
+//      mv.addObject("check", id);
 //    }
 //  
 //    mv.setViewName("./check.jsp");
