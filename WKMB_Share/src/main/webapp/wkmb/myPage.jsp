@@ -220,7 +220,7 @@
 									<c:forEach var="friend" items="${friendList}">
 										<c:if test="${friend.mode == 0}">
 											<div class="friendsName">
-												<span id="${friend.name}">${friend.name}(${friend.id})</span>
+												<a href="./myPage.wkmb?id=${friend.id}" class="friend-link"><span id="${friend.name}">${friend.name}(${friend.id})</span></a>
 											</div>
 											<br>
 										</c:if>
@@ -392,9 +392,9 @@
 	    xhr.send(formData);	// 서버에게 폼데이터 전송
 	    
 	    // 내 정보 부분을 ajax로 리프레쉬
-	    $("#changeMyProfile").load("./changeMyProfile.wkmb");
-	    
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+		$("#changeMyProfile").load("./main.wkmb #changeMyProfile > div");
+			
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
     }
 	
 	// 내 사진 삭제 => 기본 사진으로
@@ -408,9 +408,9 @@
 	    xhr.send();
 	    
 		// 내 정보 부분을 ajax로 리프레쉬
-	    $("#changeMyProfile").load("./changeMyProfile.wkmb");
+		$("#changeMyProfile").load("./main.wkmb #changeMyProfile > div");
 		
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
 	}
 	
 	function changeMyMessage()
@@ -422,7 +422,7 @@
 	    xhr.open("POST", "./changeMyMessage.wkmb", false);	// 비동기화 방식으로 처리
 	    xhr.send(formData);
 	    
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
 	}
 	
 </script>

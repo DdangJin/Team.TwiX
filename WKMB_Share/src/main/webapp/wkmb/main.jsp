@@ -438,14 +438,14 @@
  	function requestAccept(fuid)	// 친구 요청 수락
 	{
  		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid, function(){
- 			$("#profile").load("./reloadFriendProfile.wkmb");
+ 			$("#profile").load("./main.wkmb #profile > div, #profile > p");
  			
- 			$("#friendBar-mode0").load("./reloadFriendList.wkmb");
+  			$("#friendBar-mode0").load("./reloadFriendList.wkmb");
  		});
 	}
 	
 	function requestDeny(fuid)		// 친구 요청 거절
-	{
+	{/* TODO */
 		$("#requestFriendList").load("./requestDeny.wkmb?fuid=" + fuid);
 	}
 	
@@ -462,9 +462,9 @@
 	    xhr.send(formData);	// 서버에게 폼데이터 전송
 	    
 	    // 내 정보 부분을 ajax로 리프레쉬
-	    $("#changeMyProfile").load("./changeMyProfile.wkmb");
+	    $("#changeMyProfile").load("./main.wkmb #changeMyProfile > div");
 	    
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
 
     }
 	
@@ -479,9 +479,9 @@
 	    xhr.send();
 	    
 		// 내 정보 부분을 ajax로 리프레쉬
-	    $("#changeMyProfile").load("./changeMyProfile.wkmb");
+		$("#changeMyProfile").load("./main.wkmb #changeMyProfile > div");
 		
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
 	}
 	
 	function changeMyMessage()
@@ -493,7 +493,7 @@
 	    xhr.open("POST", "./changeMyMessage.wkmb", false);	// 동기화 방식으로 처리
 	    xhr.send(formData);
 	    
-	    $("#myProfile").load("./reloadMyProfile.wkmb");
+	    $("#myProfile").load("./main.wkmb #myProfile > img, #myProfile > div");
 	}
   
 </script>

@@ -263,13 +263,6 @@ public class WKMBControl {
     }
   }
   
-  // 사진을 변경 시 프로필을 ajax로 리프레쉬 하기 위해서
-  @RequestMapping("/changeMyProfile")
-  public String changeMyProfile()
-  {
-    return "./changeMyProfile.jsp";
-  }
-  
   @RequestMapping("/changeMyMessage")
   public void changeMyMessage(String message, HttpSession session)
   {
@@ -454,19 +447,6 @@ public class WKMBControl {
     return "./myPage.wkmb?id=" + user.getId();
   }
   
-  @RequestMapping("/reloadMyProfile")
-  public ModelAndView reloadMyProfile(HttpSession session)
-  {
-    ModelAndView mv = new ModelAndView();
-    User user = (User)(session.getAttribute("loginInfo"));
-    
-    if(user != null)
-      mv.addObject("solvedFriend", friendDao.selectSolvedFriend(user.getUid()));
-    
-    mv.setViewName("./reloadMyProfile.jsp");
-    return mv;
-  }
-  
   @RequestMapping("/reloadApplyFriendList")
   public ModelAndView reloadApplyFriendList(HttpSession session)
   {
@@ -478,24 +458,6 @@ public class WKMBControl {
     
     
     mv.setViewName("./reloadApplyFriendList.jsp");
-    return mv;
-  }
-  
-  @RequestMapping("/reloadFriendProfile")
-  public ModelAndView reloadFriendProfile(HttpSession session)
-  {
-    ModelAndView mv = new ModelAndView();
-    User user = (User)(session.getAttribute("loginInfo"));
-    
-    if(user != null)
-    {
-      mv.addObject("solvedFriend", friendDao.selectSolvedFriend(user.getUid()));
-      mv.addObject("friendProfile", friendDao.selectFriendListByDate(user.getUid()));
-      mv.addObject("friendCount", friendDao.selectFriendCount(user.getUid()));
-    }
-    
-    
-    mv.setViewName("./reloadFriendProfile.jsp");
     return mv;
   }
   
