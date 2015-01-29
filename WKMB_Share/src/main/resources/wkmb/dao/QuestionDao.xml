@@ -27,5 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE uid=#{uid}
 			  AND qid=#{qid}
 	</delete>
+	
+	<select id="selectQuestionListSize" parameterType="int" resultType="int">
+		SELECT count(*)
+			FROM questions
+			WHERE uid=#{uid}
+	</select>
 
 </mapper>

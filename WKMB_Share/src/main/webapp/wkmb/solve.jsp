@@ -16,9 +16,8 @@
 	
 	#nav {
 		width: 502px;
-		border-top:1px solid #2c3e50;
-		border-left:1px solid #2c3e50;
-		border-bottom:1px solid #2c3e50;
+		border-top:2px solid #2c3e50;
+		border-left:2px solid #2c3e50;
 		margin:50px auto 50px auto;
 		height:30px;
 		text-align: center;
@@ -30,79 +29,50 @@
 		float:left;
 		width: 100px;
 		height: 30px;
-		line-height:20px;
-		border-right:1px solid #2c3e50;
+		line-height: 20px;
+		border-right: 2px solid #2c3e50;
+		border-bottom: 2px solid #2c3e50;
 		padding-top: 2px;
 	}
 	
 	.section:hover {
-		background-color:#D2B428;
-		cursor:pointer;
+		background-color: #E0E92E;
+		cursor: pointer;
 		font-weight: bold;
 	}
 	
-	.question-div {
-		margin: 0 auto;
-		border: 1px solid #2c3e50;
+	.selected {
+		background-color: #E0E92E;
+	}
+	
+	#button-move {
 		width: 800px;
-		height: 200px;
-		background-color: white;
 	}
 	
-	#question-question {
-		margin: 15px;
-		height: 125px;
-		font-size: 18px;
+	#button-previous-button {
+		float: left;
 	}
 	
-	.question-answer {
+	#button-next-button {
 		float: right;
-		margin-right: 15px;
 	}
 	
 	#button-submit {
-		margin: 0 auto;
-		margin-top: 50px;
-		width: 800px;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	width: 800px;
 	}
 	
 	#button-submit-button {
+		clear: right;
 		float: right;
+		margin-top: 50px;
 	}
 	
 	
 	
-	
-	.input-form-control1 {
-		display: inline;
-		width: 216px;
-		height: 30px;
-		padding: 5px 10px;
-		font-size: 14px;
-		line-height: 1.42857143;
-		color: #555;
-		background-color: #fff;
-		background-image: none;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
-			ease-in-out .15s;
-		-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
-			.15s;
-		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	}
 
-	.input-form-control1:focus {
-		border-color: #66afe9;
-		outline: 0;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
-			rgba(102, 175, 233, .6);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
-			rgba(102, 175, 233, .6);
-	}
-	
 
 </style>
 
@@ -145,11 +115,11 @@
 				<div id="content">
 					<div id="center-content">
 						<div id="nav">
-							<div class="section" onclick="changeQuestion(1)">1번</div>
-							<div class="section" onclick="changeQuestion(2)">2번</div>
-							<div class="section" onclick="changeQuestion(3)">3번</div>
-							<div class="section" onclick="changeQuestion(4)">4번</div>
-							<div class="section" onclick="changeQuestion(5)">5번</div>
+							<div id="section1" class="section selected" onclick="changeQuestion(1)">1번</div>
+							<div id="section2" class="section" onclick="changeQuestion(2)">2번</div>
+							<div id="section3" class="section" onclick="changeQuestion(3)">3번</div>
+							<div id="section4" class="section" onclick="changeQuestion(4)">4번</div>
+							<div id="section5" class="section" onclick="changeQuestion(5)">5번</div>
 						</div>
 						<form action="./answer.wkmb" method="post" onsubmit="return submitAnswer();">
 							<c:forEach var="question" items="${questionList}" varStatus="vs">
@@ -161,6 +131,10 @@
 								<input type="text" id="answer${vs.index}" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 							</div>
 							</c:forEach>
+							<div id="button-move">
+								<button id="button-previous-button" class="btn btn-default" type="button" onclick="previous()">이전</button>
+								<button id="button-next-button" class="btn btn-default" type="button" onclick="next()">다음</button>
+							</div>
 							<div id="button-submit">
 								<button id="button-submit-button" class="btn btn-default" type="submit">제출</button>
 							</div>
@@ -179,6 +153,8 @@
 <!-- script -->
 <script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
 <script type="text/javascript">
+
+	var currentQuestion = 1;
 
 	for(var i = 2; i<= 5; i++)
 	  $("#question" + i).css("display", "none");
@@ -201,11 +177,29 @@
 	{
 		for(var i = 1; i<= 5; i++)
 		{
-			if(i == questionNo)
+			if(i == questionNo) {
 				$("#question" + questionNo).css("display", "");
-			else
+				$("#section" + questionNo).css("background-color", "#E0E92E");
+			}
+			else {
 				$("#question" + i).css("display", "none");
+				$("#section" + i).css("background-color", "#FFF9EC");
+			}
 		}
+	}
+	
+	function previous()
+	{
+	  currentQuestion = ((currentQuestion - 1) - 1 + 5) % 5 + 1;
+	  
+	  changeQuestion(currentQuestion);
+	}
+	
+	function next()
+	{
+	  currentQuestion = ((currentQuestion - 1) + 1) % 5 + 1;
+	  
+	  changeQuestion(currentQuestion);
 	}
 
 </script>

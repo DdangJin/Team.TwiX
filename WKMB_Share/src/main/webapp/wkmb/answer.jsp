@@ -21,11 +21,13 @@
 		margin-bottom: 50px;
 	}
 	
-	#count{
+	#count {
 		float: right;
-		font-size: 25px;
 		vertical-align: center;
 		margin-right: 10px;
+		font-size: 35px;
+		font-family: 'Nanum Gothic', serif;
+		font-weight: bold;
 	}
 	
 	#answerReport {
@@ -35,6 +37,29 @@
 	#answerReport-table {
 		width: 770px;
 		margin: 15px;
+	}
+	
+	#question-No {
+		width: 10px;
+	}
+	#question-Question {
+		width: 300px;
+	}
+	#question-Answer {
+		width: 30px;
+	}
+	#question-Correct {
+		width: 50px;
+	}
+	
+	#button-back {
+		margin: 0 auto;
+		margin-top: 50px;
+		width: 800px;
+	}
+	
+	#button-back-button {
+		float: right;
 	}
 
 </style>
@@ -72,7 +97,7 @@
 				<div id="content">
 					<div id="center-content">
 						<div id="correct-count">
-							<span id="count">맞춘 수: ${currectCount}/5</span>
+							<span id="count">점수: ${currectCount}/5</span>
 						</div>
 						
 						<div id="answerReport">
@@ -84,14 +109,17 @@
 								<c:forEach var="question" items="${questionList}" varStatus="vs">
 									<c:set var="questionAnswer" value="${questionAnswer},${question.answer}" />
 									<tr>
-										<td>${vs.index + 1}</td><td>${question.question}</td><td class="answer"></td><td class="correct"></td>
+										<td id="question-No">${vs.index + 1}</td><td id="question-Question">${question.question}</td><td id="question-Answer" class="answer"></td><td id="question-Correct" class="correct"></td>
 									</tr>
 									
 								</c:forEach>
 							</table>
 							</div>
 						
-							<button type="button" onclick="location.href='./myPage.wkmb?id=${questionUser.id}'">돌아가기</button>
+							<div id="button-back">
+								<button id="button-back-button" class="btn btn-default" type="button" onclick="location.href='./myPage.wkmb?id=${questionUser.id}'">돌아가기</button>
+							</div>
+							
 						</div>
 					</div>
 				</div>

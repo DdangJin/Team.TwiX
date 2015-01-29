@@ -166,7 +166,7 @@
 													</div>
 													
 													<div id="changeMyProfile-ButtonMessage">
-														<input type="text" id="myMessage" placeholder="상태말 입력" class="input-form-control1"
+														<input type="text" id="myMessage" placeholder="상태말 입력" class="input-form-control1" maxlength="30"
 																onblur="changeMyMessage()" value="${loginInfo.message}">
 													</div>
 												</div>

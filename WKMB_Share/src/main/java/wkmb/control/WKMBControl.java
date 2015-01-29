@@ -382,7 +382,10 @@ public class WKMBControl {
     User user = (User)(session.getAttribute("loginInfo"));
     
     if(user != null)
+    {
       mv.addObject("questionList", questionDao.selectQuestionList(user.getUid()));
+      mv.addObject("questionListSize", questionDao.selectQuestionListSize(user.getUid()));
+    }
     
     mv.setViewName("./make.jsp");
     return mv;

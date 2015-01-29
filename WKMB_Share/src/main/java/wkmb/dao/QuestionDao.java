@@ -81,4 +81,20 @@ public class QuestionDao {
     }
   }
 
+  public int selectQuestionListSize(int uid) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    
+    try
+    {
+      return sqlSession.selectOne("wkmb.dao.QuestionDao.selectQuestionListSize", uid);     // QuestionDao.xml의 selectQuestionListSize 쿼리문으로 문제 수 알아오기.
+    }catch(Exception e)
+    {
+      e.printStackTrace();
+      return 0;
+    }finally
+    {
+      sqlSession.close();
+    }
+  }
+
 }
