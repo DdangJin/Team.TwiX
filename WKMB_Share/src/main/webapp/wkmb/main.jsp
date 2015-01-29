@@ -53,7 +53,7 @@
 	
 	.profile-message-form-control {
 		float: left;
-		width: 240px;
+		width: 225px;
 		font-size: 15px;
 		padding-top: 40px;
 	}
@@ -70,7 +70,7 @@
 		float: right;
 		font-size: 12px;
 		padding-top: 70px;
-		padding-left: 10px;
+		padding-left: 30px;
 	}
 	
 	
@@ -81,7 +81,7 @@
 		width: 80px;
 		height: 10px;
 		display: inline-block;
-		margin-left: 58px;
+		margin-left: 86px;
 		margin-top: -4px;
 	}
 	.profile-three-form-control-circle {
