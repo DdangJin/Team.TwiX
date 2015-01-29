@@ -124,7 +124,7 @@
 						<form action="./answer.wkmb" method="post" onsubmit="return submitAnswer();">
 							<c:forEach var="question" items="${questionList}" varStatus="vs">
 							<div id="question${vs.index + 1}" class="question-div">
-								<div id="question-question">
+								<div class="question-question">
 									<span style="font-weight:bold;">[${vs.index + 1}번]&nbsp;&nbsp;</span>
 									<span>${question.question}</span>
 								</div>
