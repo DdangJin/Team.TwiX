@@ -320,8 +320,8 @@
 	</c:choose>
 	
 <!-- script -->
-<script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script>
 
 	var friendId = new Array();
@@ -333,15 +333,20 @@
 	friendMode.push("${friendMode}");
 	</c:forTokens>
 	
+	setThreeTime();
+	
 	/* 하루에 세번의 기회를 표시하는 신호등 표시하는 스크립트 구현 */
-	$('.profile-three-form-control').each(function(index, element){
-	  var count = $(element).attr('data-threeTime');
-	  $(this).find('span').each(function(i, e){
-	    if (i < count) {
-	    	$(this).addClass('profile-three-form-control-selected-' + (i + 1));
-	    }
+	function setThreeTime()
+	{
+	  $('.profile-three-form-control').each(function(index, element){
+	    var count = $(element).attr('data-threeTime');
+	    $(this).find('span').each(function(i, e){
+	      if (i < count) {
+	    	  $(this).addClass('profile-three-form-control-selected-' + (i + 1));
+	      }
+	    });
 	  });
-	});
+	}
 	
 	
 	// 이름을 검색해서 그 이름의 id의 span만 보이게 할것
@@ -438,7 +443,9 @@
  	function requestAccept(fuid)	// 친구 요청 수락
 	{
  		$("#requestFriendList").load("./requestAccept.wkmb?fuid=" + fuid, function(){
- 			$("#profile").load("./main.wkmb #profile > div, #profile > p");
+ 			$("#profile").load("./main.wkmb #profile > div, #profile > p", function(){
+ 			  setThreeTime();
+ 			});
  			
   			$("#friendBar-mode0").load("./reloadFriendList.wkmb");
  		});
