@@ -188,6 +188,16 @@
   var checkedPassword = false;
   var checkedSex = false;
   
+  function login()
+  {
+    $.post("./wkmb/login.wkmb", {id:$("#userId").val(), password:$("#userPassword").val()}, function(obj) {
+      if(obj.result)
+        location.href = "./wkmb/main.wkmb";
+      else
+        alert("아이디와 비밀번호를 확인해주세요.");
+    }, "json");
+  }
+  
   function checkId() {
     //1. id 입력 상자의 값을 가져온다.
     
@@ -329,11 +339,9 @@
 					<img src="./files/logo.png"/>
 				</div>
 				<div id="login">
-					<form action="./wkmb/login.wkmb" method="post">
-				    	<input type="text" class="form-control1" name="id" placeholder="아이디">
-						<input type="password" class="form-control1" name="password" placeholder="비밀번호">
-						<button type="submit" class="btn btn-default">Login</button>
-					</form>
+			    	<input type="text" class="form-control1" id="userId" name="id" placeholder="아이디">
+					<input type="password" class="form-control1" id="userPassword" name="password" placeholder="비밀번호">
+					<button type="button" class="btn btn-default" onclick="login()">Login</button>
 				</div>
 			</div>
 		</div>

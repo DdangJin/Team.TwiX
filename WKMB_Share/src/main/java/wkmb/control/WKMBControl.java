@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.net.httpserver.HttpsConfigurator;
-
 import wkmb.dao.FriendDao;
 import wkmb.dao.QuestionDao;
 import wkmb.dao.UserDao;
@@ -43,20 +41,20 @@ public class WKMBControl {
   ServletContext context;
   
   @RequestMapping(value="/login", method=RequestMethod.POST)
-  public String login(String id, String password, HttpSession session)
+  public ModelAndView login(String id, String password, HttpSession session)
   {
+    ModelAndView mv = new ModelAndView();
     User user = userDao.getLoginInfo(id, password);
+    
     if(user != null)
     {
-      // 로그인을 성공한다면, 로그인 기본 정보를 세션에 보관한다.
       session.setAttribute("loginInfo", user);
       
-      return "redirect:./main.wkmb";
-    }else
-    {
-      return "redirect:../";
+      mv.addObject("check", true);
     }
-    
+  
+    mv.setViewName("./check.jsp");
+    return mv;
   }
   
   @RequestMapping("/check")
@@ -66,7 +64,7 @@ public class WKMBControl {
     
     if(userDao.exist(id))   // 존재할 경우
     {
-      mv.addObject("checkId", id);
+      mv.addObject("check", true);
     }
   
     mv.setViewName("./check.jsp");
