@@ -126,35 +126,35 @@
 						<div id="questionList">
 							<form action="./insertQuestion.wkmb" method="post" onsubmit="return isFull();">
 								<div id="question1" class="question-div">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[1번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오."></textarea>
 									</div>
 									<input type="text" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 								</div>
 								<div id="question2" class="question-div">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[2번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오."></textarea>
 									</div>
 									<input type="text" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 								</div>
 								<div id="question3" class="question-div">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[3번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오."></textarea>
 									</div>
 									<input type="text" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 								</div>
 								<div id="question4" class="question-div">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[4번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오."></textarea>
 									</div>
 									<input type="text" class="question-answer input-form-control1" name="answer" placeholder="답을 적으시오."><br>
 								</div>
 								<div id="question5" class="question-div">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[5번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오."></textarea>
 									</div>
@@ -188,7 +188,7 @@
 								<c:forEach var="question" items="${questionList}" varStatus="vs">
 								<div id="question${questionNo}" class="question-div">
 									<input type="hidden" name="qid" value="${question.qid}">
-									<div id="question-question">
+									<div class="question-question">
 										<span style="font-weight:bold;">[${vs.index + 1}번]&nbsp;&nbsp;</span>
 										<textarea class="form-control" style="margin-top: 10px" cols="80" rows="3" name="question" placeholder="문제를 적으시오.">${question.question}</textarea>
 									</div>
@@ -219,7 +219,7 @@
 				      <div class="modal-header">
 				        <h4 class="modal-title" id="myModalLabel">문제 추가</h4>
 				      </div>
-				      <form action="./insertQuestion.wkmb" method="post" onsubmit="return isFull();">
+				      <form action="./insertQuestion.wkmb" method="post" onsubmit="return isFullModal();">
 					      <div class="modal-body">
 					        <div id="question" class="question-div-Modal">
 								<div id="question-question-Modal">
@@ -270,11 +270,12 @@
 	function isFull()
 	{
 	  var isFull = true;
-	  $("#questionList").find("textarea").each(function(index, element){
-    	if($(this).html() == "")
+	  
+	  $(".question-question").find("textarea").each(function(){
+    	if($(this).val() == "")
     	  isFull = false;
    	  });
-   	  $("#questionList").find("input").each(function(index, element){
+   	  $(".question-answer").each(function(){
     	if($(this).val() == "")
     	  isFull = false;
    	  });
@@ -283,6 +284,21 @@
    	    alert("모든 문항을 채우십시오!");
 	  
 	  return isFull;
+	}
+	
+	function isFullModal()
+	{
+	  var isFullModal = true;
+	  
+	  if($("#question-question-Modal").find("textarea").val() == "")
+	    isFullModal = false;
+   	  if($(".question-answer-Modal").val() == "")
+   	    isFullModal = false;
+   	  
+   	  if(!isFullModal)
+   	    alert("모든 문항을 채우십시오!");
+	  
+	  return isFullModal;
 	}
 </script>
 </body>

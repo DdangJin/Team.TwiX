@@ -55,7 +55,7 @@ html, body {
 	background-color: white;
 }
 
-#question-question {
+.question-question {
 	margin: 25px;
 	width: 730px;
 	height: 105px;
