@@ -186,6 +186,8 @@
 				$("#section" + i).css("background-color", "#FFF9EC");
 			}
 		}
+		
+		currentQuestion = questionNo;
 	}
 	
 	function previous()
